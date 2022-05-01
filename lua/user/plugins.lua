@@ -66,6 +66,10 @@ return packer.startup(function(use)
   -- COC
   use {'neoclide/coc.nvim', branch = 'release'}
 
+  -- Colorschema
+  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use "lunarvim/darkplus.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
