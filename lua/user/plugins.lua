@@ -47,6 +47,8 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons" -- Set icons for everything in NeoVim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins, necessary for LSP
   use "folke/which-key.nvim" -- Correctly select keys for mapping
+  use "bronson/vim-trailing-whitespace" -- Show trailing whitespaces in red
+
   -- Git
   use "lewis6991/gitsigns.nvim"
 
