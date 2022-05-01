@@ -2,4 +2,4 @@
 Personal NeoVim config
 
 # Things to install
-- Coc-Python
+- Coc-Pyright
