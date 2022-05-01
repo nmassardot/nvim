@@ -50,8 +50,12 @@ return packer.startup(function(use)
   use "bronson/vim-trailing-whitespace" -- Show trailing whitespaces in red
   use "akinsho/toggleterm.nvim" -- Add floating terminals feat
   use "kyazdani42/nvim-tree.lua" -- All the visualization tree settings
+
   -- Git
   use "lewis6991/gitsigns.nvim"
+
+  -- Status Line
+  use "nvim-lualine/lualine.nvim" -- Add inteligent Status Line
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
