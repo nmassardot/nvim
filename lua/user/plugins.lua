@@ -52,7 +52,10 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua" -- All the visualization tree settings
   use "nvim-lualine/lualine.nvim" -- Add inteligent Status Line
   use "lukas-reineke/indent-blankline.nvim" -- Inteligent indentation
+
+  -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
+  use "moll/vim-bbye" -- Delete buffers wisely
 
   -- Git
   use "lewis6991/gitsigns.nvim"
