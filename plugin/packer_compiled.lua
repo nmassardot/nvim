@@ -133,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nico/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/nico/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
