@@ -44,6 +44,17 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use "kyazdani42/nvim-web-devicons" -- Set icons for everything in NeoVim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins, necessary for LSP
+
+  -- Git
+  use "lewis6991/gitsigns.nvim"
+
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- COC
   use {'neoclide/coc.nvim', branch = 'release'}
