@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins, necessary for LSP
   use "folke/which-key.nvim" -- Correctly select keys for mapping
   use "bronson/vim-trailing-whitespace" -- Show trailing whitespaces in red
+  use "akinsho/toggleterm.nvim" -- Add floating terminals feat
 
   -- Git
   use "lewis6991/gitsigns.nvim"
