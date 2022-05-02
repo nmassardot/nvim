@@ -52,6 +52,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua" -- All the visualization tree settings
   use "nvim-lualine/lualine.nvim" -- Add inteligent Status Line
   use "lukas-reineke/indent-blankline.nvim" -- Inteligent indentation
+  use {"https://github.com/rieg-ec/coc-tailwindcss", run = "yarn install --frozen-lockfile && yarn run build"} -- TailwindCSS by RIEG
 
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
