@@ -59,6 +59,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "github/copilot.vim"
 
   -- CMP
   use "hrsh7th/nvim-cmp" -- The completion plugin
