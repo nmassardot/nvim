@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim" -- Add inteligent Status Line
   use "lukas-reineke/indent-blankline.nvim" -- Inteligent indentation
   use {"https://github.com/rieg-ec/coc-tailwindcss", run = "yarn install --frozen-lockfile && yarn run build"} -- TailwindCSS by RIEG
+  use "tpope/vim-commentary" -- Comment lines using gcc
 
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
@@ -60,7 +61,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "github/copilot.vim"
+  -- use "github/copilot.vim"
 
   -- CMP
   use "hrsh7th/nvim-cmp" -- The completion plugin
