@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim" -- Inteligent indentation
   use {"https://github.com/rieg-ec/coc-tailwindcss", run = "yarn install --frozen-lockfile && yarn run build"} -- TailwindCSS by RIEG
   use "tpope/vim-commentary" -- Comment lines using gcc
+  use "mxw/vim-jsx" -- Highlight JSX
 
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
@@ -87,6 +88,7 @@ return packer.startup(function(use)
   -- Colorschema
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use {"sonph/onehalf", rtp="vim" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
