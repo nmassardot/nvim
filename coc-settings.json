@@ -20,27 +20,46 @@
   ],
   "coc.preferences.extensionUpdateCheck": "never",
   "snippets.extends": {
-    "cpp": ["c"],
-    "typescript": ["javascript", "vue"],
-    "html": ["vue", "erb"],
-    "css": ["vue"],
-    "rails": ["rb"]
+    "cpp": [
+      "c"
+    ],
+    "typescript": [
+      "javascript",
+      "typescriptreact",
+      "javascriptreact",
+      "vue"
+    ],
+    "html": [
+      "vue",
+      "javascriptreact",
+      "erb"
+    ],
+    "css": [
+      "javascriptreact",
+      "vue"
+    ],
+    "rails": [
+      "rb"
+    ]
   },
-  "html.filetypes": ["html", "handlebars", "htmldjango", "blade", "erb"],
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "blade",
+    "erb"
+  ],
   "json.format.enable": true,
   "yaml.format.enable": true,
   "yaml.format.singleQuote": false,
-  "python.linting.enable": true,
-  "python.linting.flake8Enabled": false,
-  "python.formatting.provider": "pylint",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "autopep8",
   "python.venvPath": "env",
   "signature.enable": false,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-  "prettier.singleQuote": true,
-  "prettier.printWidth": 100,
-  "prettier.arrowParens": "avoid",
-  "javascript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "double",
   "eslint.autoFixOnSave": true,
   "tailwindCSS.headwind.runOnSave": true,
   "tailwindCSS.headwind.defaultSortOrder": [
