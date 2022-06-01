@@ -55,6 +55,10 @@ return packer.startup(function(use)
   use {"https://github.com/rieg-ec/coc-tailwindcss", run = "yarn install --frozen-lockfile && yarn run build"} -- TailwindCSS by RIEG
   use "tpope/vim-commentary" -- Comment lines using gcc
   use "mxw/vim-jsx" -- Highlight JSX
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }) -- MarkDown browser preview
 
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
