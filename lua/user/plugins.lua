@@ -40,6 +40,8 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
+  -- Testing my plugins
+  -- use "~/Documents/Projects/nvim-preview-svg"
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
@@ -59,6 +61,7 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   }) -- MarkDown browser preview
+  use "nmassardot/nvim-preview-svg" -- Preview SVGs contained in files
 
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
