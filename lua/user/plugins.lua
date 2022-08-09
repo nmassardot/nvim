@@ -69,6 +69,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "tpope/vim-fugitive" -- Run git commands on vim
   -- use "github/copilot.vim"
 
   -- CMP
@@ -88,6 +89,7 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
+  use "nvim-treesitter/nvim-treesitter"
 
   -- COC
   use {'neoclide/coc.nvim', branch = 'release'}
