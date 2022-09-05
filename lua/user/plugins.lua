@@ -63,13 +63,16 @@ return packer.startup(function(use)
   }) -- MarkDown browser preview
   use "nmassardot/nvim-preview-svg" -- Preview SVGs contained in files
 
+  -- Snippets
+  use "SirVer/ultisnips"
+  use "rieg-ec/vim-snippets"
+
   -- Buffers
   use "akinsho/bufferline.nvim" -- Show buffers in a line
   use "moll/vim-bbye" -- Delete buffers wisely
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "tpope/vim-fugitive" -- Run git commands on vim
   -- use "github/copilot.vim"
 
   -- CMP
