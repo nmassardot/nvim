@@ -1,6 +1,6 @@
 vim.cmd [[
 try
-  colorscheme spacedark
+  colorscheme lunar
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark
