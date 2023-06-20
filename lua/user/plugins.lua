@@ -47,7 +47,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "kyazdani42/nvim-web-devicons" -- Set icons for everything in NeoVim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins, necessary for LSP
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins, necessary for LSP
   use "folke/which-key.nvim" -- Correctly select keys for mapping
   use "bronson/vim-trailing-whitespace" -- Show trailing whitespaces in red
   use "akinsho/toggleterm.nvim" -- Add floating terminals feat
@@ -100,7 +100,6 @@ return packer.startup(function(use)
   -- Colorschema
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
-  use {"sonph/onehalf", rtp="vim" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
