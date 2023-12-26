@@ -9,12 +9,14 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	debug = false,
+	debug = true,
 	sources = {
 		formatting.prettier.with({ extra_args = { "--double-quote", "--jsx-double-quote" } }),
-		formatting.black.with({ extra_args = { "--fast" } }),
+		diagnostics.eslint,
+		diagnostics.pylint,
 		formatting.stylua,
 		diagnostics.flake8,
+		formatting.terraform_fmt,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

@@ -20,42 +20,24 @@
   ],
   "coc.preferences.extensionUpdateCheck": "never",
   "snippets.extends": {
-    "cpp": [
-      "c"
-    ],
-    "typescript": [
-      "javascript",
-      "typescriptreact",
-      "javascriptreact",
-      "vue"
-    ],
-    "html": [
-      "vue",
-      "javascriptreact",
-      "erb"
-    ],
-    "css": [
-      "javascriptreact",
-      "vue"
-    ],
-    "rails": [
-      "rb"
-    ]
+    "cpp": ["c"],
+    "typescript": ["javascript", "typescriptreact", "javascriptreact", "vue"],
+    "html": ["vue", "javascriptreact", "erb"],
+    "css": ["javascriptreact", "vue"],
+    "rails": ["rb"],
+    "fastapi": ["python"]
   },
-  "html.filetypes": [
-    "html",
-    "handlebars",
-    "htmldjango",
-    "blade",
-    "erb"
-  ],
+  "html.filetypes": ["html", "handlebars", "htmldjango", "blade", "erb"],
   "json.format.enable": true,
   "yaml.format.enable": true,
   "yaml.format.singleQuote": false,
+  "pyright.enable": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.formatting.provider": "autopep8",
+  "python.analysis.autoImportCompletions": true,
   "python.venvPath": "env",
+  "pyright.completion.snippetSupport": true,
   "signature.enable": false,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,

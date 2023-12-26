@@ -1,16 +1,17 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.gitsigns"
-require "user.lsp"
-require "user.telescope"
-require "user.whichkey"
-require "user.autopairs"
-require "user.toggleterm"
-require "user.colorschema"
-require "user.nvimtree"
-require "user.lualine"
-require "user.indentline"
-require "user.bufferline"
-require "user.cmp"
-require "user.preview-svg"
+require("user.options")
+require("user.keymaps")
+require("user.plugins")
+require("user.gitsigns")
+require("user.lsp")
+require("user.telescope")
+require("user.whichkey")
+require("user.autopairs")
+require("user.colorschema")
+require("user.nvimtree")
+require("user.lualine")
+require("user.indentline")
+require("user.bufferline")
+require("user.cmp")
+require("user.preview-svg")
+
+vim.cmd([[highlight CocUnusedHighlight ctermbg=NONE guibg=#bfa41d]])
