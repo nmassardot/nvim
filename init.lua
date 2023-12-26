@@ -12,6 +12,5 @@ require("user.lualine")
 require("user.indentline")
 require("user.bufferline")
 require("user.cmp")
-require("user.preview-svg")
 
 vim.cmd([[highlight CocUnusedHighlight ctermbg=NONE guibg=#bfa41d]])

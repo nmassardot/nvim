@@ -55,18 +55,16 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- Inteligent indentation
 	use({ "https://github.com/rieg-ec/coc-tailwindcss", run = "yarn install --frozen-lockfile && yarn run build" }) -- TailwindCSS by RIEG
 	use("tpope/vim-commentary") -- Comment lines using gcc
-	use("mxw/vim-jsx") -- Highlight JSX
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	}) -- MarkDown browser preview
-	use("nmassardot/nvim-preview-svg") -- Preview SVGs contained in files
 
 	-- Snippets
-	use("SirVer/ultisnips")
-	use("rieg-ec/vim-snippets")
+	-- use("SirVer/ultisnips")
+	-- use("rieg-ec/vim-snippets")
 
 	-- Buffers
 	use("akinsho/bufferline.nvim") -- Show buffers in a line
@@ -74,13 +72,11 @@ return packer.startup(function(use)
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
-	-- use "github/copilot.vim"
 
 	-- CMP
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
 
@@ -93,7 +89,6 @@ return packer.startup(function(use)
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
-
 	use("nvim-treesitter/nvim-treesitter")
 
 	-- COC
@@ -101,7 +96,6 @@ return packer.startup(function(use)
 
 	-- Colorschema
 	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
-	use("lunarvim/darkplus.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
