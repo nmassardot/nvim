@@ -60,12 +60,12 @@ function M.config()
       "<cmd>confirm q<CR>",
       desc = "Quit",
     },
-    {
-      "<leader>h",
-      "<cmd>nohlsearch<CR>",
-      desc = "NOHL",
-      hidden = true,
-    },
+    -- {
+    --   "<leader>h",
+    --   "<cmd>nohlsearch<CR>",
+    --   desc = "NOHL",
+    --   hidden = true,
+    -- },
     {
       "<leader>;",
       "<cmd>tabnew | terminal<CR>",
@@ -77,13 +77,19 @@ function M.config()
     },
     {
       "<leader>w",
-      "<cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>",
-      desc = "Wrap",
+      "<cmd>confirm w<CR>",
+      desc = "Save",
       hidden = true,
     },
     {
       "<leader>v",
       "<cmd>vsplit<CR>",
+      desc = "Split",
+      hidden = true,
+    },
+    {
+      "<leader>h",
+      "<cmd>split<CR>",
       desc = "Split",
       hidden = true,
     },

@@ -14,6 +14,7 @@ function M.config()
       [""] = "rainbow-delimiters",
       lua = "rainbow-parens",
       typescript = "rainbow-parens",
+      vue = "rainbow-parens",
       javascript = "rainbow-parens",
       typescriptreact = "rainbow-parens",
       javascriptreact = "rainbow-parens",

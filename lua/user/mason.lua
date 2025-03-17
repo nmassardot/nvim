@@ -11,14 +11,13 @@ M.execs = {
   "cssls",
   "html",
   "tsserver",
-  "astro",
   "pyright",
+  "solargraph",
   "bashls",
   "jsonls",
   "yamlls",
   "marksman",
   "tailwindcss",
-  "rust_analyzer",
   "eslint",
 }
 

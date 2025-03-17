@@ -28,14 +28,14 @@ function M.config()
       -- tsserver_format_options = {},
 
       tsserver_file_preferences = {
-        includeInlayParameterNameHints = "all", -- "none" | "literals" | "all";
+        includeInlayParameterNameHints = "none", -- "none" | "literals" | "all";
         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayEnumMemberValueHints = false,
 
         includeCompletionsForModuleExports = true,
         quotePreference = "auto",
@@ -45,7 +45,7 @@ function M.config()
 
       jsx_close_tag = {
         enable = true,
-        filetypes = { "javascriptreact", "typescriptreact" },
+        filetypes = { "javascriptreact", "typescriptreact", "vue" },
       },
     },
   }

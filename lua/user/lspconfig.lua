@@ -31,6 +31,11 @@ M.on_attach = function(client, bufnr)
   if client.supports_method "textDocument/inlayHint" then
     vim.lsp.inlay_hint.enable(true)
   end
+  -- Enable formatting only for Volar
+  if client.name == "volar" then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 end
 
 M.toggle_inlay_hints = function()
@@ -116,26 +121,19 @@ function M.config()
   local icons = require "user.icons"
 
   local servers = {
-    "lua_ls",
     "cssls",
     "html",
     -- "tsserver",
-    "astro",
     "pyright",
-    -- "basedpyright",
     "bashls",
-    -- "lemminx",
     "jsonls",
+    "solargraph",
     "yamlls",
     "marksman",
     "tailwindcss",
-    "eslint",
-    "taplo",
     "gopls",
-    "templ",
-    "biome",
-    -- "nginx-language-server",
-    -- "rust_analyzer",
+    "volar",
+    "eslint",
   }
 
   vim.diagnostic.config {

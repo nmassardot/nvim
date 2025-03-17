@@ -47,6 +47,7 @@ function M.config()
     button("t", icons.ui.Text .. "  Find text", ":Telescope live_grep <CR>"),
     button("c", icons.ui.Gear .. "  Config", ":e ~/.config/nvim/init.lua <CR>"),
     button("q", icons.ui.SignOut .. "  Quit", ":qa<CR>"),
+    button("w", icons.ui.SignOut .. "  Save", ":w<CR>"),
   }
   local function footer()
     return "chrisatmachine.com"
