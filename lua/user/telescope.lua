@@ -1,3 +1,4 @@
+-- Telescope Configuration Module
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true } },
@@ -8,32 +9,27 @@ local M = {
 function M.config()
   local wk = require "which-key"
 
+  -- File Operations
   wk.add {
-    {
-      "<leader>bb",
-      "<cmd>Telescope buffers previewer=false<cr>",
-      desc = "Find",
-    },
-    {
-      "<leader>fb",
-      "<cmd>Telescope git_branches<cr>",
-      desc = "Checkout branch",
-    },
-    {
-      "<leader>fc",
-      "<cmd>Telescope colorscheme<cr>",
-      desc = "Colorscheme",
-    },
     {
       "<leader>ff",
       "<cmd>Telescope find_files<cr>",
       desc = "Find files",
     },
     {
-      "<leader>fp",
-      "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
-      desc = "Projects",
+      "<leader>fr",
+      "<cmd>Telescope oldfiles<cr>",
+      desc = "Recent File",
     },
+    {
+      "<leader>bb",
+      "<cmd>Telescope buffers previewer=false<cr>",
+      desc = "Find Buffers",
+    },
+  }
+
+  -- Search Operations
+  wk.add {
     {
       "<leader>ft",
       "<cmd>Telescope live_grep<cr>",
@@ -45,50 +41,14 @@ function M.config()
       desc = "Find String",
     },
     {
-      "<leader>fh",
-      "<cmd>Telescope help_tags<cr>",
-      desc = "Help",
-    },
-    {
-      "<leader>fH",
-      "<cmd>Telescope highlights<cr>",
-      desc = "Highlights",
-    },
-    {
-      "<leader>fi",
-      "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>",
-      desc = "Media",
-    },
-    {
       "<leader>fl",
       "<cmd>Telescope resume<cr>",
       desc = "Last Search",
     },
-    {
-      "<leader>fM",
-      "<cmd>Telescope man_pages<cr>",
-      desc = "Man Pages",
-    },
-    {
-      "<leader>fr",
-      "<cmd>Telescope oldfiles<cr>",
-      desc = "Recent File",
-    },
-    {
-      "<leader>fR",
-      "<cmd>Telescope registers<cr>",
-      desc = "Registers",
-    },
-    {
-      "<leader>fk",
-      "<cmd>Telescope keymaps<cr>",
-      desc = "Keymaps",
-    },
-    {
-      "<leader>fC",
-      "<cmd>Telescope commands<cr>",
-      desc = "Commands",
-    },
+  }
+
+  -- Git Operations
+  wk.add {
     {
       "<leader>go",
       "<cmd>Telescope git_status<cr>",
@@ -109,6 +69,10 @@ function M.config()
       "<cmd>Telescope git_bcommits<cr>",
       desc = "Checkout commit(for current file)",
     },
+  }
+
+  -- LSP Operations
+  wk.add {
     {
       "<leader>ls",
       "<cmd>Telescope lsp_document_symbols<cr>",
@@ -126,6 +90,68 @@ function M.config()
     },
   }
 
+  -- UI and Theme
+  wk.add {
+    {
+      "<leader>fc",
+      "<cmd>Telescope colorscheme<cr>",
+      desc = "Colorscheme",
+    },
+    {
+      "<leader>fH",
+      "<cmd>Telescope highlights<cr>",
+      desc = "Highlights",
+    },
+  }
+
+  -- Help and Documentation
+  wk.add {
+    {
+      "<leader>fh",
+      "<cmd>Telescope help_tags<cr>",
+      desc = "Help",
+    },
+    {
+      "<leader>fM",
+      "<cmd>Telescope man_pages<cr>",
+      desc = "Man Pages",
+    },
+  }
+
+  -- System and Tools
+  wk.add {
+    {
+      "<leader>fR",
+      "<cmd>Telescope registers<cr>",
+      desc = "Registers",
+    },
+    {
+      "<leader>fk",
+      "<cmd>Telescope keymaps<cr>",
+      desc = "Keymaps",
+    },
+    {
+      "<leader>fC",
+      "<cmd>Telescope commands<cr>",
+      desc = "Commands",
+    },
+  }
+
+  -- Projects and Media
+  wk.add {
+    {
+      "<leader>fp",
+      "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
+      desc = "Projects",
+    },
+    {
+      "<leader>fi",
+      "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>",
+      desc = "Media",
+    },
+  }
+
+  -- Customize Telescope Results Display
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "TelescopeResults",
     callback = function(ctx)
@@ -136,9 +162,11 @@ function M.config()
     end,
   })
 
+  -- Helper Functions
   local icons = require "user.icons"
   local actions = require "telescope.actions"
 
+  -- Custom filename display function
   local function filenameFirst(_, path)
     local tail = vim.fs.basename(path)
     local parent = vim.fs.dirname(path)
@@ -148,8 +176,10 @@ function M.config()
     return string.format("%s\t\t%s", tail, parent)
   end
 
+  -- Telescope Setup
   require("telescope").setup {
     defaults = {
+      -- UI Elements
       prompt_prefix = icons.ui.Telescope .. " ",
       selection_caret = icons.ui.Forward .. "  ",
       entry_prefix = "   ",
@@ -158,9 +188,13 @@ function M.config()
       path_display = { "smart" },
       color_devicons = true,
       set_env = { ["COLORTERM"] = "truecolor" },
+      
+      -- Layout Settings
       sorting_strategy = nil,
       layout_strategy = nil,
       layout_config = {},
+
+      -- Search Settings
       vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -169,15 +203,14 @@ function M.config()
         "--line-number",
         "--column",
         "--smart-case",
-        -- "--hidden",
         "--glob=!.git/",
       },
 
+      -- Keymaps
       mappings = {
         i = {
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
-
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
         },
@@ -189,21 +222,23 @@ function M.config()
         },
       },
     },
+
+    -- Picker-specific Settings
     pickers = {
+      -- File Search
       live_grep = {
         theme = "dropdown",
       },
-
       grep_string = {
         theme = "dropdown",
       },
-
       find_files = {
         theme = "dropdown",
         previewer = false,
         path_display = filenameFirst,
       },
 
+      -- Buffer Management
       buffers = {
         theme = "dropdown",
         previewer = false,
@@ -218,42 +253,31 @@ function M.config()
         },
       },
 
-      planets = {
-        show_pluto = true,
-        show_moon = true,
-      },
-
+      -- Theme and Colors
       colorscheme = {
         enable_preview = true,
       },
 
+      -- LSP Pickers
       lsp_references = {
         theme = "dropdown",
         initial_mode = "normal",
       },
-
       lsp_definitions = {
         theme = "dropdown",
         initial_mode = "normal",
       },
-
       lsp_declarations = {
         theme = "dropdown",
         initial_mode = "normal",
       },
-
       lsp_implementations = {
         theme = "dropdown",
         initial_mode = "normal",
       },
     },
     extensions = {
-      fzf = {
-        fuzzy = true, -- false will only do exact matching
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true, -- override the file sorter
-        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      },
+      -- Extension configurations would go here
     },
   }
 end

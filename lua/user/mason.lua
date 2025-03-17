@@ -10,15 +10,16 @@ M.execs = {
   "lua_ls",
   "cssls",
   "html",
-  "tsserver",
   "pyright",
-  "solargraph",
   "bashls",
   "jsonls",
+  "solargraph",
   "yamlls",
   "marksman",
   "tailwindcss",
+  "volar",
   "eslint",
+  "ts_ls"
 }
 
 function M.config()
