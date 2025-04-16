@@ -17,6 +17,11 @@ function M.config()
       desc = "Find files",
     },
     {
+      "<leader>fd",
+      "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:p:h') })<cr>",
+      desc = "Find in current dir",
+    },
+    {
       "<leader>fr",
       "<cmd>Telescope oldfiles<cr>",
       desc = "Recent File",
@@ -180,9 +185,9 @@ function M.config()
   require("telescope").setup {
     defaults = {
       -- UI Elements
-      prompt_prefix = icons.ui.Telescope .. " ",
-      selection_caret = icons.ui.Forward .. "  ",
-      entry_prefix = "   ",
+      prompt_prefix = "🔍 ",
+      selection_caret = "➜ ",
+      entry_prefix = "  ",
       initial_mode = "insert",
       selection_strategy = "reset",
       path_display = { "smart" },
@@ -221,6 +226,8 @@ function M.config()
           ["q"] = actions.close,
         },
       },
+
+      multi_icon = "✦",
     },
 
     -- Picker-specific Settings
@@ -236,6 +243,10 @@ function M.config()
         theme = "dropdown",
         previewer = false,
         path_display = filenameFirst,
+        find_command = { "rg", "--files", "--hidden", "--glob=!.git/*" },
+        hidden = true,
+        no_ignore = false,
+        follow = true,
       },
 
       -- Buffer Management

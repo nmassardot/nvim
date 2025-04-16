@@ -44,14 +44,17 @@ function M.config()
   local icons = require "user.icons"
 
   require("nvim-navic").setup {
+    on_attach = function(client, bufnr)
+        navic.attach(client, bufnr)
+    end,
     icons = kinds,
     highlight = true,
-    lsp = {
-      auto_attach = true,
-      preference = {
-        "templ",
-      },
-    },
+    -- lsp = {
+    --   auto_attach = true,
+    --   preference = {
+    --     "templ",
+    --   },
+    -- },
     click = true,
     separator = " " .. icons.ui.ChevronRight .. " ",
     depth_limit = 0,
