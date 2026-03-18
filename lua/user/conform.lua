@@ -19,14 +19,7 @@ function M.config()
       yaml = { "prettier" },
       markdown = { "prettier" },
     },
-    format_on_save = function(bufnr)
-      -- Disable for certain filetypes
-      local ignore_filetypes = { "sql" }
-      if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-        return
-      end
-      return { timeout_ms = 500, lsp_format = "fallback" }
-    end,
+    format_on_save = false,
   }
 
   -- Override <leader>lf to use conform
