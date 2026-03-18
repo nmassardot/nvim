@@ -1,106 +1,33 @@
 -- LSP Configuration Module
 local M = {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" }, -- Load on buffer read or new file
+  event = { "BufReadPre", "BufNewFile" },
 }
 
--- LSP Keymaps
--- Define keymaps for LSP functionality
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  
-  -- Navigation
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- Go to declaration
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go to implementation
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- Show references
-  
-  -- Help and Diagnostics
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- Show diagnostic float
-  
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
   -- K hover is handled by UFO (extras/ufo.lua)
 end
 
--- LSP Client Attach Handler
--- Configure client behavior when attaching to a buffer
-M.on_attach = function(client, bufnr)
-  lsp_keymaps(bufnr)
-
-  -- Enable inlay hints if supported
-  if client.supports_method "textDocument/inlayHint" then
-    vim.lsp.inlay_hint.enable(true)
-  end
-  
-  -- Special handling for Volar (Vue.js LSP)
-  if client.name == "volar" then
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-  end
-end
-
--- Toggle Inlay Hints
 M.toggle_inlay_hints = function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
 end
 
--- Common LSP Capabilities
--- Define standard capabilities for all LSP clients
-function M.common_capabilities()
-  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  local capabilities = status_ok
-    and cmp_nvim_lsp.default_capabilities()
-    or vim.lsp.protocol.make_client_capabilities()
-
-  capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-
-  return capabilities
-end
-
--- Main Configuration
 function M.config()
-  -- Which-key mappings for LSP commands
   local wk = require "which-key"
   wk.add {
-    -- Code actions and formatting
-    { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-    {
-      "<leader>lf",
-      "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-      desc = "Format",
-    },
-    
-    -- Diagnostics and navigation
-    {
-      "<leader>lj",
-      "<cmd>lua vim.diagnostic.goto_next()<cr>",
-      desc = "Next Diagnostic",
-    },
-    {
-      "<leader>lk",
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      desc = "Prev Diagnostic",
-    },
-    {
-      "<leader>lq",
-      "<cmd>lua vim.diagnostic.setloclist()<cr>",
-      desc = "Quickfix",
-    },
-    
-    -- LSP features
-    {
-      "<leader>li",
-      "<cmd>LspInfo<cr>",
-      desc = "Info",
-    },
-    {
-      "<leader>lh",
-      "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>",
-      desc = "Hints",
-    },
+    { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action" },
+    { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "v" } },
+    { "<leader>lj", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
+    { "<leader>lk", vim.diagnostic.goto_prev, desc = "Prev Diagnostic" },
+    { "<leader>lq", vim.diagnostic.setloclist, desc = "Quickfix" },
+    { "<leader>li", "<cmd>checkhealth vim.lsp<cr>", desc = "Info" },
+    { "<leader>lh", M.toggle_inlay_hints, desc = "Hints" },
     {
       "<leader>lr",
       function()
@@ -111,37 +38,27 @@ function M.config()
       end,
       desc = "Rename (buffer)",
     },
-    
-    -- Visual mode code actions
-    {
-      "<leader>la",
-      "<cmd>lua vim.lsp.buf.code_action()<cr>",
-      desc = "Code Action",
-      mode = { "v" },
-    },
   }
 
-  -- Configure LSP servers
-  local lspconfig = require "lspconfig"
   local icons = require "user.icons"
 
-  -- List of LSP servers to configure
+  -- Servers to configure
   local servers = {
-    "cssls",      -- CSS
-    "html",       -- HTML
-    "pyright",    -- Python
-    "bashls",     -- Bash
-    "jsonls",     -- JSON
-    "solargraph", -- Ruby
-    "yamlls",     -- YAML
-    "marksman",   -- Markdown
-    "tailwindcss", -- Tailwind CSS
-    "volar",      -- Vue.js
-    "eslint",     -- ESLint
-    "ts_ls",      -- TypeScript
+    "cssls",
+    "html",
+    "pyright",
+    "bashls",
+    "jsonls",
+    "solargraph",
+    "yamlls",
+    "marksman",
+    "tailwindcss",
+    "volar",
+    "eslint",
+    "ts_ls",
   }
 
-  -- Configure diagnostic display
+  -- Diagnostics
   vim.diagnostic.config {
     signs = {
       text = {
@@ -164,17 +81,41 @@ function M.config()
     },
   }
 
-  -- Configure LSP UI elements
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-  require("lspconfig.ui.windows").default_options.border = "rounded"
-
-  -- Setup each LSP server
-  for _, server in pairs(servers) do
-    local opts = {
-      on_attach = M.on_attach,
-      capabilities = M.common_capabilities(),
+  -- Capabilities (blink.cmp + folding for UFO)
+  local capabilities = (function()
+    local status_ok, blink = pcall(require, "blink.cmp")
+    local caps = status_ok
+      and blink.get_lsp_capabilities()
+      or vim.lsp.protocol.make_client_capabilities()
+    caps.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
     }
+    return caps
+  end)()
+
+  -- On attach
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      local bufnr = args.buf
+
+      lsp_keymaps(bufnr)
+
+      if client and client.supports_method("textDocument/inlayHint") then
+        vim.lsp.inlay_hint.enable(true)
+      end
+
+      if client and client.name == "volar" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end
+    end,
+  })
+
+  -- Configure and enable each server using vim.lsp.config (Neovim 0.11+)
+  for _, server in ipairs(servers) do
+    local opts = { capabilities = capabilities }
 
     -- Load server-specific settings if available
     local require_ok, settings = pcall(require, "user.lspsettings." .. server)
@@ -182,8 +123,10 @@ function M.config()
       opts = vim.tbl_deep_extend("force", settings, opts)
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
   end
+
+  vim.lsp.enable(servers)
 end
 
 return M

@@ -17,7 +17,7 @@ M.execs = {
   "yamlls",
   "marksman",
   "tailwindcss",
-  "volar",
+  "vue_ls",
   "eslint",
   "ts_ls"
 }
@@ -35,6 +35,7 @@ function M.config()
   }
   require("mason-lspconfig").setup {
     ensure_installed = M.execs,
+    automatic_enable = false,
   }
 end
 

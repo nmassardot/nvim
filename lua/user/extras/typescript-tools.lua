@@ -1,48 +1,30 @@
 local M = {
-  -- "pmizio/typescript-tools.nvim",
   "notomo/typescript-tools.nvim",
   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 }
 
 function M.config()
-  local lspconfig = require "user.lspconfig"
+  local capabilities = (function()
+    local ok, blink = pcall(require, "blink.cmp")
+    return ok and blink.get_lsp_capabilities() or vim.lsp.protocol.make_client_capabilities()
+  end)()
+
   require("typescript-tools").setup {
-    on_attach = function(client, bufnr)
-      lspconfig.on_attach(client, bufnr)
+    on_attach = function(client)
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
     end,
-    capabilities = lspconfig.common_capabilities(),
+    capabilities = capabilities,
     settings = {
-      -- spawn additional tsserver instance to calculate diagnostics on it
       separate_diagnostic_server = true,
       expose_as_code_action = "all",
-      -- tsserver_plugins = {},
       tsserver_max_memory = "auto",
-      -- complete_function_calls = true,
       include_completions_with_insert_text = true,
-      -- code_lens = "all",
-      -- disable_member_code_lens = true,
-
-      -- described below
-      -- tsserver_format_options = {},
-
       tsserver_file_preferences = {
-        includeInlayParameterNameHints = "none", -- "none" | "literals" | "all";
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = false,
-        includeInlayVariableTypeHints = false,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = false,
-        includeInlayFunctionLikeReturnTypeHints = false,
-        includeInlayEnumMemberValueHints = false,
-
+        includeInlayParameterNameHints = "none",
         includeCompletionsForModuleExports = true,
         quotePreference = "auto",
-
-        -- autoImportFileExcludePatterns = { "node_modules/*", ".git/*" },
       },
-
       jsx_close_tag = {
         enable = true,
         filetypes = { "javascriptreact", "typescriptreact", "vue" },

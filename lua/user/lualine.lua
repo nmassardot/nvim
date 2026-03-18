@@ -29,7 +29,7 @@ function M.config()
     options = {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      ignore_focus = { "NvimTree" },
+      ignore_focus = { "neo-tree" },
     },
     sections = {
       lualine_a = {},

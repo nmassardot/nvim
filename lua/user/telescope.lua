@@ -3,7 +3,6 @@ local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true } },
   event = "VeryLazy",
-  cmd = "Telescope",
 }
 
 function M.config()
@@ -11,83 +10,47 @@ function M.config()
 
   -- File Operations
   wk.add {
-    {
-      "<leader>ff",
-      "<cmd>Telescope find_files<cr>",
-      desc = "Find files",
-    },
-    {
-      "<leader>fd",
-      "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('%:p:h') })<cr>",
-      desc = "Find in current dir",
-    },
-    {
-      "<leader>fr",
-      "<cmd>Telescope oldfiles<cr>",
-      desc = "Recent File",
-    },
-    {
-      "<leader>bb",
-      "<cmd>Telescope buffers previewer=false<cr>",
-      desc = "Find Buffers",
-    },
+    { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
+    { "<leader>fd", function() require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") }) end, desc = "Find in current dir" },
+    { "<leader>fr", function() require("telescope.builtin").oldfiles() end, desc = "Recent File" },
+    { "<leader>bb", function() require("telescope.builtin").buffers({ previewer = false }) end, desc = "Find Buffers" },
   }
 
   -- Search Operations
   wk.add {
-    {
-      "<leader>ft",
-      "<cmd>Telescope live_grep<cr>",
-      desc = "Find Text",
-    },
-    {
-      "<leader>fs",
-      "<cmd>Telescope grep_string<cr>",
-      desc = "Find String",
-    },
-    {
-      "<leader>fl",
-      "<cmd>Telescope resume<cr>",
-      desc = "Last Search",
-    },
+    { "<leader>ft", function() require("telescope.builtin").live_grep() end, desc = "Find Text" },
+    { "<leader>fs", function() require("telescope.builtin").grep_string() end, desc = "Find String" },
+    { "<leader>fl", function() require("telescope.builtin").resume() end, desc = "Last Search" },
   }
 
   -- Git Operations
   wk.add {
     {
       "<leader>go",
-      "<cmd>Telescope git_status<cr>",
+      function() require("telescope.builtin").git_status() end,
       desc = "Open changed file",
     },
     {
       "<leader>gb",
-      "<cmd>Telescope git_branches<cr>",
+      function() require("telescope.builtin").git_branches() end,
       desc = "Checkout branch",
     },
     {
       "<leader>gc",
-      "<cmd>Telescope git_commits<cr>",
+      function() require("telescope.builtin").git_commits() end,
       desc = "Checkout commit",
     },
     {
       "<leader>gC",
-      "<cmd>Telescope git_bcommits<cr>",
+      function() require("telescope.builtin").git_bcommits() end,
       desc = "Checkout commit(for current file)",
     },
   }
 
   -- UI and Tools
   wk.add {
-    {
-      "<leader>fc",
-      "<cmd>Telescope colorscheme<cr>",
-      desc = "Colorscheme",
-    },
-    {
-      "<leader>fk",
-      "<cmd>Telescope keymaps<cr>",
-      desc = "Keymaps",
-    },
+    { "<leader>fc", function() require("telescope.builtin").colorscheme() end, desc = "Colorscheme" },
+    { "<leader>fk", function() require("telescope.builtin").keymaps() end, desc = "Keymaps" },
   }
 
   -- Customize Telescope Results Display
