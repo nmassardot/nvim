@@ -43,37 +43,11 @@ function M.config()
 
   local wk = require "which-key"
 
-  -- icon colors
-  -- azure, blue, cyan, green, grey, orange, purple, red, yellow
-
   wk.add {
-    {
-      "<leader>a",
-      group = "AI",
-      icon = {
-        icon = " ",
-        color = "blue",
-      },
-    },
     {
       "<leader>q",
       "<cmd>confirm q<CR>",
       desc = "Quit",
-    },
-    -- {
-    --   "<leader>h",
-    --   "<cmd>nohlsearch<CR>",
-    --   desc = "NOHL",
-    --   hidden = true,
-    -- },
-    {
-      "<leader>;",
-      "<cmd>tabnew | terminal<CR>",
-      desc = "Term",
-      icon = {
-        icon = " ",
-        color = "green",
-      },
     },
     {
       "<leader>w",
@@ -112,62 +86,15 @@ function M.config()
     {
       "<leader>l",
       group = "LSP",
-      icon = {
-        icon = " ",
-        color = "blue",
-      },
-    },
-    {
-      "<leader>n",
-      icon = {
-        icon = "󱞂 ",
-        color = "yellow",
-      },
-      group = "Nostr",
     },
     {
       "<leader>p",
-      icon = {
-        icon = " ",
-        color = "azure",
-      },
       group = "Plugins",
     },
     {
       "<leader>t",
       group = "Test",
     },
-    -- {
-    --   "<leader>a",
-    --   name = "Tab",
-    --   children = {
-    --     {
-    --       "<leader>an",
-    --       "<cmd>$tabnew<cr>",
-    --       desc = "New Empty Tab",
-    --     },
-    --     {
-    --       "<leader>aN",
-    --       "<cmd>tabnew %<cr>",
-    --       desc = "New Tab",
-    --     },
-    --     {
-    --       "<leader>ao",
-    --       "<cmd>tabonly<cr>",
-    --       desc = "Only",
-    --     },
-    --     {
-    --       "<leader>ah",
-    --       "<cmd>-tabmove<cr>",
-    --       desc = "Move Left",
-    --     },
-    --     {
-    --       "<leader>al",
-    --       "<cmd>+tabmove<cr>",
-    --       desc = "Move Right",
-    --     },
-    --   },
-    -- },
     {
       "<leader>T",
       group = "Treesitter",

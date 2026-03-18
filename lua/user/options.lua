@@ -6,7 +6,7 @@ vim.opt.guifont = "monospace:h17" -- Font for GUI applications
 
 -- UI Settings
 vim.opt.showmode = false -- Hide mode indicator (-- INSERT --)
-vim.opt.showtabline = 1 -- Always show tabline
+vim.opt.showtabline = 2 -- Always show tabline
 vim.opt.laststatus = 3 -- Global statusline
 vim.opt.showcmd = false -- Hide command line
 vim.opt.ruler = false -- Hide ruler
@@ -39,10 +39,8 @@ vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
 
 -- Performance Settings
-vim.opt.lazyredraw = true -- Don't redraw while executing macros
-vim.opt.updatetime = 100 -- Faster completion (4000ms default)
+vim.opt.updatetime = 250 -- Faster completion (4000ms default)
 vim.opt.timeoutlen = 1000 -- Time to wait for mapped sequence
-vim.opt.foldmethod = "syntax" -- Enable syntax-based code folding
 
 -- Backup and Swap Files
 vim.opt.backup = true -- Enable backup files
@@ -79,3 +77,6 @@ vim.cmd [[set iskeyword+=_]] -- Add underscore to word characters
 -- Netrw Settings
 vim.g.netrw_banner = 0 -- Hide Netrw banner
 vim.g.netrw_mouse = 2 -- Enable mouse in Netrw
+
+-- LSP Settings
+vim.lsp.set_log_level("error")

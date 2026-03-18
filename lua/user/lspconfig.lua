@@ -17,16 +17,9 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- Show references
   
   -- Help and Diagnostics
-  keymap(bufnr, "n", "<CR>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts) -- Show signature help
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts) -- Show diagnostic float
   
-  -- Smart hover with UFO integration
-  vim.keymap.set("n", "K", function()
-    local winid = require("ufo").peekFoldedLinesUnderCursor()
-    if not winid then
-      vim.lsp.buf.hover()
-    end
-  end)
+  -- K hover is handled by UFO (extras/ufo.lua)
 end
 
 -- LSP Client Attach Handler
@@ -55,23 +48,10 @@ end
 -- Define standard capabilities for all LSP clients
 function M.common_capabilities()
   local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_ok then
-    return cmp_nvim_lsp.default_capabilities()
-  end
+  local capabilities = status_ok
+    and cmp_nvim_lsp.default_capabilities()
+    or vim.lsp.protocol.make_client_capabilities()
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  
-  -- Completion capabilities
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
-  }
-  
-  -- Folding capabilities
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -122,14 +102,14 @@ function M.config()
       desc = "Hints",
     },
     {
-      "<leader>ll",
-      "<cmd>lua vim.lsp.codelens.run()<cr>",
-      desc = "CodeLens Action",
-    },
-    {
       "<leader>lr",
-      "<cmd>lua vim.lsp.buf.rename()<cr>",
-      desc = "Rename",
+      function()
+        local old = vim.fn.expand("<cword>")
+        local new = vim.fn.input("Rename (buffer): ", old)
+        if new == "" or new == old then return end
+        vim.cmd(":%s/\\<" .. vim.fn.escape(old, "/\\") .. "\\>/" .. vim.fn.escape(new, "/\\") .. "/g")
+      end,
+      desc = "Rename (buffer)",
     },
     
     -- Visual mode code actions
@@ -158,7 +138,7 @@ function M.config()
     "tailwindcss", -- Tailwind CSS
     "volar",      -- Vue.js
     "eslint",     -- ESLint
-    "ts_ls",     -- ESLint
+    "ts_ls",      -- TypeScript
   }
 
   -- Configure diagnostic display
@@ -203,11 +183,6 @@ function M.config()
     end
 
     lspconfig[server].setup(opts)
-
-    -- Special handling for nginx LSP
-    if server == "nginx-language-server" then
-      require("lspconfig").nginx_language_server.setup(opts)
-    end
   end
 end
 

@@ -15,8 +15,7 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
--- Switch to alternate file
-keymap("n", "<m-tab>", "<c-6>", opts)
+
 
 -- Search Navigation
 -- Center the screen on search results
@@ -43,7 +42,6 @@ vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<C
 
 -- Context Menu Triggers
 vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
-vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
 
 -- Line Navigation
 -- Move through wrapped lines
@@ -56,7 +54,3 @@ keymap("n", "<s-tab>", "<cmd>tabnew %<cr>", opts)
 -- Navigate between tabs
 keymap({ "n" }, "<s-h>", "<cmd>tabp<cr>", opts)
 keymap({ "n" }, "<s-l>", "<cmd>tabn<cr>", opts)
-
--- Terminal Mode
--- Exit terminal mode with Ctrl-;
-vim.api.nvim_set_keymap("t", "<C-;>", "<C-\\><C-n>", opts)

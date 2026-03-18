@@ -30,6 +30,8 @@ function M.config()
       "DressingSelect",
       "TelescopePrompt",
       "neo-tree",
+      "json",
+      "jsonc",
     },
   }
 end

@@ -2,7 +2,7 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true } },
-  lazy = true,
+  event = "VeryLazy",
   cmd = "Telescope",
 }
 
@@ -76,26 +76,7 @@ function M.config()
     },
   }
 
-  -- LSP Operations
-  wk.add {
-    {
-      "<leader>ls",
-      "<cmd>Telescope lsp_document_symbols<cr>",
-      desc = "Document Symbols",
-    },
-    {
-      "<leader>lS",
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      desc = "Workspace Symbols",
-    },
-    {
-      "<leader>le",
-      "<cmd>Telescope quickfix<cr>",
-      desc = "Telescope Quickfix",
-    },
-  }
-
-  -- UI and Theme
+  -- UI and Tools
   wk.add {
     {
       "<leader>fc",
@@ -103,56 +84,9 @@ function M.config()
       desc = "Colorscheme",
     },
     {
-      "<leader>fH",
-      "<cmd>Telescope highlights<cr>",
-      desc = "Highlights",
-    },
-  }
-
-  -- Help and Documentation
-  wk.add {
-    {
-      "<leader>fh",
-      "<cmd>Telescope help_tags<cr>",
-      desc = "Help",
-    },
-    {
-      "<leader>fM",
-      "<cmd>Telescope man_pages<cr>",
-      desc = "Man Pages",
-    },
-  }
-
-  -- System and Tools
-  wk.add {
-    {
-      "<leader>fR",
-      "<cmd>Telescope registers<cr>",
-      desc = "Registers",
-    },
-    {
       "<leader>fk",
       "<cmd>Telescope keymaps<cr>",
       desc = "Keymaps",
-    },
-    {
-      "<leader>fC",
-      "<cmd>Telescope commands<cr>",
-      desc = "Commands",
-    },
-  }
-
-  -- Projects and Media
-  wk.add {
-    {
-      "<leader>fp",
-      "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
-      desc = "Projects",
-    },
-    {
-      "<leader>fi",
-      "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>",
-      desc = "Media",
     },
   }
 

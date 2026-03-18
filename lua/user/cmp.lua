@@ -47,8 +47,6 @@ function M.config()
     color_square_width = 2,
   }
 
-  vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-  vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
   vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
   vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 
@@ -110,10 +108,8 @@ function M.config()
           luasnip.expand()
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif check_backspace() then
-          require("neotab").tabout()
         else
-          require("neotab").tabout()
+          fallback()
         end
       end, {
         "i",
@@ -208,16 +204,6 @@ function M.config()
           vim_item.kind = string.rep("▣", 1)
         end
 
-        if entry.source.name == "copilot" then
-          vim_item.kind = icons.git.Octoface
-          vim_item.kind_hl_group = "CmpItemKindCopilot"
-        end
-
-        if entry.source.name == "cmp_tabnine" then
-          vim_item.kind = icons.misc.Robot
-          vim_item.kind_hl_group = "CmpItemKindTabnine"
-        end
-
         if entry.source.name == "crates" then
           vim_item.kind = icons.misc.Package
           vim_item.kind_hl_group = "CmpItemKindCrate"
@@ -232,8 +218,6 @@ function M.config()
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
       { name = "emoji", priority = 200 },
-      { name = "copilot", priority = 100 },
-      { name = "cmp_tabnine", priority = 100 },
       { name = "crates", priority = 100 },
     }),
     window = {

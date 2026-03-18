@@ -18,11 +18,6 @@ function M.config()
       desc = "Diagnostics",
     },
     {
-      "<leader>ls",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
-      desc = "Symbols",
-    },
-    {
       "<leader>lt",
       "<cmd>Trouble todo toggle<cr>",
       desc = "TODO",

@@ -72,12 +72,7 @@ function M.config()
     close_fold_kinds = {},
     -- close_fold_kinds = { "imports", "comment" },
     provider_selector = function(bufnr, filetype, buftype)
-      -- if you prefer treesitter provider rather than lsp,
-      -- return ftMap[filetype] or {'treesitter', 'indent'}
-      return ftMap[filetype]
-      -- return { "treesitter", "indent" }
-
-      -- refer to ./doc/example.lua for detail
+      return ftMap[filetype] or { "treesitter", "indent" }
     end,
 
     preview = {
@@ -95,28 +90,10 @@ function M.config()
     },
   }
 
-  -- vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-  -- vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-  -- vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
-  -- vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-
-  local wk = require "which-key"
-  wk.add {
-    {
-      "za",
-      desc = "Toggle fold",
-    },
-    {
-      "zm",
-      "<cmd>require('ufo').closeAllFolds<cr>",
-      desc = "Close all folds",
-    },
-    {
-      "zr",
-      "<cmd>require('ufo').openAllFolds<cr>",
-      desc = "Open all folds",
-    },
-  }
+  vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+  vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+  vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "Open folds except kinds" })
+  vim.keymap.set("n", "zm", require("ufo").closeFoldsWith, { desc = "Close folds with" })
 
   vim.keymap.set("n", "K", function()
     local winid = require("ufo").peekFoldedLinesUnderCursor()

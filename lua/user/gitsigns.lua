@@ -10,85 +10,24 @@ M.config = function()
   local wk = require "which-key"
 
   wk.add {
-    {
-      "<leader>gj",
-      "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>",
-      desc = "Next Hunk",
-    },
-    {
-      "<leader>gk",
-      "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",
-      desc = "Prev Hunk",
-    },
-    {
-      "<leader>gp",
-      "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
-      desc = "Preview Hunk",
-    },
-    {
-      "<leader>gr",
-      "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
-      desc = "Reset Hunk",
-    },
-    {
-      "<leader>gl",
-      "<cmd>lua require 'gitsigns'.blame_line()<cr>",
-      desc = "Blame",
-    },
-    {
-      "<leader>gR",
-      "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
-      desc = "Reset Buffer",
-    },
-    {
-      "<leader>gs",
-      "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
-      desc = "Stage Hunk",
-    },
-    {
-      "<leader>gu",
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      desc = "Undo Stage Hunk",
-    },
-    {
-      "<leader>gd",
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      desc = "Git Diff",
-    },
+    { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", desc = "Next Hunk" },
+    { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", desc = "Prev Hunk" },
+    { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },
+    { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk" },
+    { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame" },
+    { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer" },
+    { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk" },
+    { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk" },
+    { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
   }
 
   require("gitsigns").setup {
     signs = {
-      add = {
-        -- hl = "GitSignsAdd",
-        text = icons.ui.BoldLineMiddle,
-        -- numhl = "GitSignsAddNr",
-        -- linehl = "GitSignsAddLn",
-      },
-      change = {
-        -- hl = "GitSignsChange",
-        text = icons.ui.BoldLineDashedMiddle,
-        -- numhl = "GitSignsChangeNr",
-        -- linehl = "GitSignsChangeLn",
-      },
-      delete = {
-        -- hl = "GitSignsDelete",
-        text = icons.ui.TriangleShortArrowRight,
-        -- numhl = "GitSignsDeleteNr",
-        -- linehl = "GitSignsDeleteLn",
-      },
-      topdelete = {
-        -- hl = "GitSignsDelete",
-        text = icons.ui.TriangleShortArrowRight,
-        -- numhl = "GitSignsTopDeleteNr",
-        -- linehl = "GitSignsDeleteLn",
-      },
-      changedelete = {
-        -- hl = "GitSignsChange",
-        text = icons.ui.BoldLineMiddle,
-        -- numhl = "GitSignsChangeNr",
-        -- linehl = "GitSignsChangeLn",
-      },
+      add = { text = icons.ui.BoldLineMiddle },
+      change = { text = icons.ui.BoldLineDashedMiddle },
+      delete = { text = icons.ui.TriangleShortArrowRight },
+      topdelete = { text = icons.ui.TriangleShortArrowRight },
+      changedelete = { text = icons.ui.BoldLineMiddle },
     },
     watch_gitdir = {
       interval = 1000,
